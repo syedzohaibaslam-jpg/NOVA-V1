@@ -1,6 +1,8 @@
 # NOVA-V1 Game Analysis Lab (development plan)
 
-Status: planning scaffold; not deployed or connected to NOVA Forge.
+Status: tested development adapter implemented; not deployed. See [implementation, tests and limitations](../integrations/forge/README.md).
+
+The source-analysis HTTP lifecycle and Forge Postgres integration were exercised locally. Real REA semantic analysis is environment-blocked; APK/native engine integration and live production acceptance remain incomplete. The original proposal below describes the broader target, not completed functionality.
 
 ## Purpose
 Use the existing REA MCP engine for authorized game reverse engineering and original mod/tool development. Keep NOVA-V1 and NOVA Forge independently deployable.
