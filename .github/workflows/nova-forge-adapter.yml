@@ -1,0 +1,24 @@
+name: NOVA Forge adapter
+on:
+  pull_request:
+    paths:
+      - 'integrations/forge/**'
+      - '.github/workflows/nova-forge-adapter.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      TURBO_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run build:cached
+      - name: Verify lifecycle and real REA evidence
+        run: node --test integrations/forge/server.test.mjs integrations/forge/rea-source.test.mjs
